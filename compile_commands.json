@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/bhraman/Projects/Raylib/Snake/build",
+  "command": "/usr/bin/c++  -I/home/bhraman/Projects/Raylib/Snake/include -I/home/bhraman/raylib/src -std=gnu++17 -o CMakeFiles/snake.dir/main.cpp.o -c /home/bhraman/Projects/Raylib/Snake/main.cpp",
+  "file": "/home/bhraman/Projects/Raylib/Snake/main.cpp"
+},
+{
+  "directory": "/home/bhraman/Projects/Raylib/Snake/build",
+  "command": "/usr/bin/c++  -I/home/bhraman/Projects/Raylib/Snake/include -I/home/bhraman/raylib/src -std=gnu++17 -o CMakeFiles/snake.dir/src/snake.cpp.o -c /home/bhraman/Projects/Raylib/Snake/src/snake.cpp",
+  "file": "/home/bhraman/Projects/Raylib/Snake/src/snake.cpp"
+}
+]
