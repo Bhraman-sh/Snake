@@ -13,6 +13,9 @@ public:
     void drawHead(Grid);
     void move();
     void setFace(Face face) { this->face = face; }
+    Face getFace() { return this->face; }
+
+    Grid_Position getPos() { return headPos; }
 
 private:
     Grid_Position headPos;

@@ -1,10 +1,7 @@
 #include "body.h"
 
-Body::Body(Grid grid)
+Body::Body(Grid grid, Grid_Position pos, Face t_face) : size(grid.getLength()), inPosX(grid.getGridPositionX()), inPosY(grid.getGridPositionY()), bodyPos(pos), face(t_face)
 {
-    size = grid.getLength();
-    inPosX = grid.getGridPositionX();
-    inPosY = grid.getGridPositionY();
 }
 
 void Body::drawBody()
@@ -38,3 +35,5 @@ void Body::move()
             break;
     }
 }
+
+

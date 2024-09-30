@@ -21,8 +21,8 @@ private:
 class Grid_Position
 {
 public:
-    int getGridX(){ return grid_x; };
-    int getGridY(){ return grid_y; };
+    int getGridX() const { return grid_x; };
+    int getGridY() const { return grid_y; };
 
     void setGridX(int i){ grid_x = i; };
     void setGridY(int i){ grid_y = i; };
@@ -31,6 +31,8 @@ public:
     void moveLeft(){ grid_x--; };
     void moveDown(){ grid_y++; };
     void moveUp(){ grid_y--; };
+
+    bool operator== (const Grid_Position) const;
 
     void rotate(Grid_Position);
 private:

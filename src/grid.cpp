@@ -31,3 +31,15 @@ void Grid::drawGrid()
 
     DrawRectangleLines(grid_pos_x, grid_pos_y, length * MAX_GRID_X, length * MAX_GRID_Y, BLACK);
 }
+
+bool Grid_Position::operator== (const Grid_Position pos) const
+{
+    if (grid_x == pos.getGridX())
+    {
+        if (grid_y == pos.getGridY())
+        {
+            return true;
+        }
+    }
+    return false;
+}
