@@ -1,5 +1,7 @@
 #include "snake.h"
 
+Movement::Movement(Face face, int a) : face(face), a(a){}
+
 Snake::Snake() : grid(800, 600), head(grid)
 {
     InitWindow(800, 600, "SNAKE");
@@ -12,6 +14,12 @@ Snake::~Snake()
     for (auto it = bodies.begin(); it != bodies.end(); ++it)
     {
          std::cout << (*it)->getPos().getGridX() << (*it)->getPos().getGridX() << std::endl;
+    }
+    std::cout << "List" << std::endl;
+
+    for (Movement val: move)
+    {
+         std::cout << val.a << std::endl;
     }
 }
 void Snake::run()
@@ -50,12 +58,29 @@ void Snake::draw()
 
 void Snake::moveSnake()
 {
+    for (Movement &val: move)
+    {
+        if (val.a == 0)
+        {
+            head.setFace(val.face);
+        } else {
+            bodies[val.a-1]->setFace(val.face);
+        }
+
+        val.a++;
+    }
+
+    /*if (move.back().a == bodies.size())
+    {
+        move.pop_back();
+    }*/
+
     head.move();
 
-    /* for (auto it = bodies.begin(); it != bodies.end(); ++it)
+    for (auto it = bodies.begin(); it != bodies.end(); ++it)
     {
         (*it)->move();
-    } */
+    }
 }
 
 void Snake::growSnake() 
@@ -131,12 +156,41 @@ void Snake::foodEaten()
         growSnake();
     }
 }
+
 void Snake::updateInput()
 {
-    if (IsKeyPressed(KEY_RIGHT)) { head.setFace(right); }
-    if (IsKeyPressed(KEY_LEFT)) { head.setFace(left); }
-    if (IsKeyPressed(KEY_UP)) { head.setFace(up); }
-    if (IsKeyPressed(KEY_DOWN)) { head.setFace(down); }
+    if (IsKeyPressed(KEY_RIGHT)) 
+    {
+        // head.setFace(right); 
+        Movement movement(right, 0);
+        move.push_front(movement);
+        moveSnake();
+        foodEaten();
+    }
+    if (IsKeyPressed(KEY_LEFT)) 
+    {
+        // head.setFace(left); 
+        Movement movement(left, 0);
+        move.push_front(movement);
+        moveSnake();
+        foodEaten();
+    }
+    if (IsKeyPressed(KEY_UP)) 
+    {
+        // head.setFace(up); 
+        Movement movement(up, 0);
+        move.push_front(movement);
+        moveSnake();
+        foodEaten();
+    }
+    if (IsKeyPressed(KEY_DOWN)) 
+    {
+        // head.setFace(down); 
+        Movement movement(down, 0);
+        move.push_front(movement);
+        moveSnake();
+        foodEaten();
+    }
 }
 
 Grid_Position randomPositionGenerator(std::vector<std::unique_ptr<Body>>& bodies, Head hed)

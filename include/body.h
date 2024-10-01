@@ -12,6 +12,7 @@ public:
     void move();
     Grid_Position getPos() { return bodyPos; }
     Face getFace() { return this->face; }
+    void setFace(Face face) { this->face = face; }
 
 private:
     Grid_Position bodyPos;

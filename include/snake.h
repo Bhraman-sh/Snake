@@ -11,8 +11,9 @@
 #include <random>
 #include <iostream>
 
-struct movement
+struct Movement
 {
+    Movement(Face, int);
     int a;
     Face face;
 };
@@ -42,7 +43,7 @@ private:
     Grid_Position last;
     Head head;
     std::vector<std::unique_ptr<Body>> bodies; 
-    std::list<movement> move;
+    std::list<Movement> move;
 
     Face temp_face;
 
