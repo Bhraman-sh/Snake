@@ -6,6 +6,8 @@ Snake::Snake() : grid(800, 600), head(grid)
 {
     InitWindow(800, 600, "SNAKE");
     time1 = GetTime();
+    foodPos = randomPositionGenerator(bodies, head);
+    SetTargetFPS(30);
 }
 
 Snake::~Snake()
@@ -70,16 +72,21 @@ void Snake::moveSnake()
         val.a++;
     }
 
-    /*if (move.back().a == bodies.size())
+    if (move.back().a == (bodies.size() + 1))
     {
         move.pop_back();
-    }*/
+    }
 
     head.move();
 
     for (auto it = bodies.begin(); it != bodies.end(); ++it)
     {
         (*it)->move();
+    }
+
+    if (hitBoundary() || hitBody())
+    {
+        exit(0);
     }
 }
 
@@ -155,6 +162,33 @@ void Snake::foodEaten()
 
         growSnake();
     }
+}
+
+bool Snake::hitBoundary()
+{
+    int x = head.getPos().getGridX();
+    int y = head.getPos().getGridY();
+
+    if ((x < 0 || x > 19) || (y < 0 || x > 19))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool Snake::hitBody()
+{
+    Grid_Position pos = head.getPos();
+    for (auto it = bodies.begin(); it != bodies.end(); ++it)
+    {
+        if (pos == (*it)->getPos())
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void Snake::updateInput()

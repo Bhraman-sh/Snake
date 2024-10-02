@@ -35,6 +35,10 @@ public:
     void finalPosition(Grid_Position&, Face&);
     void foodEaten();
 
+    // Game over
+    bool hitBoundary();
+    bool hitBody();
+
     // General update
     void updateInput();
 
